@@ -1,7 +1,7 @@
 "use client";
 
 import { useDraw } from "@/hooks/useDraw";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BsCursorText, BsPencil } from "react-icons/bs";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import ColorPicker from "./ColorPicker";
@@ -11,9 +11,11 @@ import { useSelectedChildren } from "@/store";
 import { useInput } from "@/hooks/userInput";
 import Input from "./Input";
 import { mousePointToCanvas } from "@/lib/utils";
+import { useWindowSize } from "@/hooks/useSize";
 
 const HomePage = () => {
   const [color, setColor] = useState("#fff");
+  const size = useWindowSize();
   const { canvasRef, onMouseDown, clear } = useDraw(drawLine);
   const { children } = useSelectedChildren((state) => state);
   const { onClick } = useInput();
@@ -36,6 +38,7 @@ const HomePage = () => {
     ctx.fill();
   }
 
+  console.log(size);
   return (
     <main onClick={onClick} className="relative flex flex-1 flex-col">
       <Logo />
@@ -68,12 +71,15 @@ const HomePage = () => {
         canvas
       </span>
       <div className="absolute inset-0 flex">
-        <canvas
-          onMouseDown={onMouseDown}
-          ref={canvasRef}
-          width={window.innerWidth * 3}
-          height={window.innerHeight * 3}
-        />
+        {size && (
+          <canvas
+            onMouseDown={onMouseDown}
+            ref={canvasRef}
+            width={size.width * 2}
+            height={size.height * 2}
+            className="border-4"
+          />
+        )}
       </div>
       {children && (
         <Input
