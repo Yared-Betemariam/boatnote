@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { create } from "zustand";
 
 export type Children = {
@@ -23,6 +22,9 @@ interface SelectedChildren {
 }
 
 export const useTools = create<SelectedTool>((set, get) => ({
+  tool: {
+    type: "draw",
+  },
   resetTool: () => {
     set({ tool: undefined });
     useSelectedChildren.getState().resetChildren();

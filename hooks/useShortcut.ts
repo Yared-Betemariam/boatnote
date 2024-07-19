@@ -5,12 +5,12 @@ export const useShortcuts = (clear: () => void) => {
   const { tool, setTool } = useTools();
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key == "a") {
+      if (e.ctrlKey && e.key == "z") {
         setTool({
           type: "text",
         });
       }
-      if (e.ctrlKey && e.key == "d") {
+      if (e.ctrlKey && e.key == "x") {
         setTool({
           type: "draw",
         });

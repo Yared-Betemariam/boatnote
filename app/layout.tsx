@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
-import { redirect } from "next/navigation";
 
 const inter = Jost({ subsets: ["latin"] });
 
@@ -17,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="bg-pattern -z-50 inset-0 absolute bg-repeat bg-center opacity-[0.02]" />
+        {children}
+      </body>
     </html>
   );
 }
