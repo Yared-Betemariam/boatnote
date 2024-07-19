@@ -25,7 +25,7 @@ const HomePage = () => {
 
   function drawLine({ ctx, currentPoint, prevPoint }: Draw) {
     const { x: currentX, y: currentY } = currentPoint;
-    const lineWidth = 8;
+    const lineWidth = 6;
 
     let startPoint = prevPoint ?? currentPoint;
     ctx.beginPath();
