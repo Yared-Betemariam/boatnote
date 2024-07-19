@@ -1,5 +1,5 @@
 import { useSelectedChildren, useTools } from "@/store";
-import { MouseEvent, useEffect, useRef } from "react";
+import { MouseEvent } from "react";
 
 export const useInput = () => {
   const setChildren = useSelectedChildren((state) => state.setChildren);

@@ -11,12 +11,15 @@ import { useSelectedChildren } from "@/store";
 import { useInput } from "@/hooks/userInput";
 import Input from "./Input";
 import { mousePointToCanvas } from "@/lib/utils";
-import { useWindowSize } from "@/hooks/useSize";
+import { useWindowSize } from "usehooks-ts";
+import { useShortcuts } from "@/hooks/useShortcut";
 
 const HomePage = () => {
   const [color, setColor] = useState("#fff");
   const size = useWindowSize();
   const { canvasRef, onMouseDown, clear } = useDraw(drawLine);
+  useShortcuts(clear);
+
   const { children } = useSelectedChildren((state) => state);
   const { onClick } = useInput();
 
@@ -38,9 +41,11 @@ const HomePage = () => {
     ctx.fill();
   }
 
-  console.log(size);
   return (
-    <main onClick={onClick} className="relative flex flex-1 flex-col">
+    <main
+      onClick={onClick}
+      className="relative flex flex-1 flex-col overflow-hidden"
+    >
       <Logo />
       <div className=" absolute flex flex-col left-4 top-1/2 -translate-y-1/2 bg-gray-700/0 rounded-2xl shadow-2xl p-2 gap-4 z-50">
         <Tool
@@ -77,12 +82,12 @@ const HomePage = () => {
             ref={canvasRef}
             width={size.width * 2}
             height={size.height * 2}
-            className="border-4"
           />
         )}
       </div>
       {children && (
         <Input
+          color={color}
           onEnter={(data) => {
             const canvas = canvasRef.current;
             if (!canvas) return;
@@ -96,9 +101,9 @@ const HomePage = () => {
               canvas
             );
             if (!res) return;
-            ctx.font = "500 66px system-ui";
+            ctx.font = "500 44px system-ui";
             ctx.fillStyle = color;
-            ctx.letterSpacing = "1px";
+            // ctx.letterSpacing = "1px";
             ctx.fillText(data.text, res.x, res.y);
           }}
           child={children}

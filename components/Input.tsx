@@ -3,11 +3,12 @@ import { Children, useSelectedChildren, useTools } from "@/store";
 import { useState } from "react";
 
 type Props = {
+  color: string;
   child: Children;
   onEnter: (data: { text: string; x: number; y: number }) => void;
 };
 
-const Input = ({ child, onEnter }: Props) => {
+const Input = ({ color, child, onEnter }: Props) => {
   const setTool = useTools((state) => state.setTool);
   const { resetChildren } = useSelectedChildren();
   const [val, setVal] = useState("");
@@ -45,8 +46,14 @@ const Input = ({ child, onEnter }: Props) => {
           }
         }}
         autoFocus
+        style={{
+          color,
+        }}
         onChange={(e) => setVal(e.target.value)}
-        className="absolute inset-0 z-50 outline-none focus-visible:outline-none bg-transparent text-gray-100 text-[22px] p-0"
+        className={cn(
+          "absolute inset-0 z-50 outline-none focus-visible:outline-none bg-transparent  text-[22px] p-0 border-0",
+          `text-[${color}]`
+        )}
       />
       {/* {isSelected && (
         <div className="relative h-full w-full">
