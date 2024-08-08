@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-pattern -z-50 inset-0 absolute bg-repeat bg-center opacity-[0.02]" />
+        <div className="bg-pattern -z-50 inset-0 absolute bg-repeat bg-center opacity-[0.01]" />
         {children}
       </body>
     </html>

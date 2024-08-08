@@ -46,7 +46,7 @@ const HomePage = () => {
       onClick={onClick}
       className="relative flex flex-1 flex-col overflow-hidden"
     >
-      <Logo />
+      {/* <Logo /> */}
       <div className=" absolute flex flex-col left-4 top-1/2 -translate-y-1/2 bg-gray-700/0 rounded-2xl shadow-2xl p-2 gap-4 z-50">
         <Tool
           Icon={BsCursorText}
