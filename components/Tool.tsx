@@ -23,7 +23,7 @@ const Tool = ({
         onClick && onClick();
       }}
       className={cn(
-        "bg-gray-800 h-[44px] w-[44px] active:opacity-60 rounded-xl grid place-content-center text-xl cursor-pointer shadow-xl",
+        "bg-zinc-800 h-[44px] w-[44px] active:opacity-60 rounded-xl grid place-content-center text-xl cursor-pointer shadow-xl",
         tool.type === selectedTool?.type
           ? "ring-4 ring-secondary"
           : "opacity-80"
